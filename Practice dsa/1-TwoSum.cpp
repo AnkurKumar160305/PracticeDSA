@@ -12,7 +12,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
         mp[nums[i]]=i;
     }
 
-    return {0,0};
+    return {};
 }
 
 int main() {
