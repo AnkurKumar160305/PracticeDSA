@@ -109,6 +109,8 @@ void deletebyValue(Node* &head,int val){
     delete del;
 }
 
+
+//Length of LL
 int length(Node* head){
     int cnt=0;
     while(head!=NULL){
@@ -118,7 +120,7 @@ int length(Node* head){
     return cnt;
 }
 
-
+//Searching in LL
 bool Search(Node* head,int key){
     while(head!=NULL){
         if(head->val==key){
@@ -128,6 +130,8 @@ bool Search(Node* head,int key){
     }
     return false;
 }
+
+//Reverse LL (Very important)
 Node* ReverseLL(Node* head){
     Node* prev=NULL;
     Node* curr=head;
@@ -141,6 +145,7 @@ Node* ReverseLL(Node* head){
     return prev;
 }
 //Or
+
 Node* reverseRecursive(Node* head) {
     if (head == NULL || head->next == NULL)
         return head;
@@ -152,6 +157,54 @@ Node* reverseRecursive(Node* head) {
     return newHead;
 }
 
+
+// Middle of LL (Tortoise & Hare Algorithm)
+Node* middleofLL(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+}
+
+
+//Detect Cycle (very important)
+bool DetectCycle(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast) return true;
+    }
+    return false;
+}
+
+
+//Remove Cycle (advance)
+void removeCycle(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+
+    do {
+        slow = slow->next;
+        fast = fast->next->next;
+    } while (slow != fast);
+
+    fast=head;
+    while(fast->next!=slow->next){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    slow->next=NULL;
+}
+
+//Merge Two Sorted LL
+Node* merge(Node* l1, Node* l2) {
+
+}
 
 int main(){
     Node* head=new Node(1);
