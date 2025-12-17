@@ -57,9 +57,101 @@ void insertatPosition(Node* &head,int pos,int val){
     if (temp == NULL) return;
     newnode->next=temp->next;
     temp->next=newnode;
-
-
 }
+
+
+//Deletion from beginning
+void deleteatHead(Node* &head){
+    if(head==NULL) return;
+
+    Node* temp=head;
+    head=head->next;
+    temp->next=NULL;
+    delete temp;
+}
+
+//Deletion from End
+void deletionfromEnd(Node* &head){
+    if(head==NULL){
+        return;
+    }
+    if(head->next==NULL){
+        delete head;
+        head=NULL;
+        return;
+    }
+
+    Node* temp=head;
+    while(temp->next->next!=NULL){
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=NULL;
+}
+
+
+//Delete by Value
+void deletebyValue(Node* &head,int val){
+    if (head == NULL) return;
+
+    if (head->data == val) {
+        deleteHead(head);
+        return;
+    }
+
+    Node* temp=head;
+    while(temp->next!=NULL && temp->next->data!=val){
+        temp=temp->next;
+    }
+    if (temp->next == NULL) return;
+    Node* del=temp->next;
+    temp=del->next;
+    delete del;
+}
+
+int length(Node* head){
+    int cnt=0;
+    while(head!=NULL){
+        cnt++;
+        head=head->next;
+    }
+    return cnt;
+}
+
+
+bool Search(Node* head,int key){
+    while(head!=NULL){
+        if(head->val==key){
+            return true;
+        }
+        head=head->next;
+    }
+    return false;
+}
+Node* ReverseLL(Node* head){
+    Node* prev=NULL;
+    Node* curr=head;
+
+    while(curr!=NULL){
+        Node* nextnode=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=nextnode;
+    }
+    return prev;
+}
+//Or
+Node* reverseRecursive(Node* head) {
+    if (head == NULL || head->next == NULL)
+        return head;
+
+    Node* newHead = reverseRecursive(head->next);
+    head->next->next = head;
+    head->next = NULL;
+
+    return newHead;
+}
+
 
 int main(){
     Node* head=new Node(1);
