@@ -86,6 +86,60 @@ void insertatPosition(Node* &head,int pos,int val){
     temp->next=newnode;
 }
 
+void deletefromBeginning(Node* &head){
+    if(head==NULL){
+        return;
+    }
+    Node* temp=head;
+    head=head->next;
+
+    if(head!=NULL){
+        head->prev=NULL;
+    }
+    delete temp;
+}
+
+void deletefromEnd(Node* &head){
+    if(head==NULL) return;
+
+    if(head->next==NULL){
+        delete head;
+        head=NULL;
+        return;
+    }
+
+    Node* temp=head;
+    while(temp!=NULL){
+        temp=temp->next;
+    }
+    temp->prev->next=NULL;
+    delete temp;
+}
+
+
+void deletebyValue(Node* &head,int val){
+    if(head==NULL) return;
+    Node* temp=head;
+    while(temp!=NULL && temp->data!=val){
+        temp=temp->next;
+    }
+
+    if(temp==NULL) return;
+
+    if(temp->prev!=NULL){
+        temp->prev->next=temp->next;
+    }else{
+        head=temp->next;
+        if (head != NULL) {
+            head->prev = NULL;
+        }
+    }
+
+    if(temp->next!=NULL){
+        temp->next->prev=temp->prev;
+    }
+    delete temp;
+}
 
 int main(){
     Node* head=new Node(0);
