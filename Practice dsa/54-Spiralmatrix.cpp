@@ -7,7 +7,6 @@ public:
         int stcol=0,endcol=c - 1;
 
         vector<int> ans;
-        int cnt=0;
         while(strow<=endrow && stcol<=endcol){
            for(int i=stcol;i<=endcol;i++){
                 ans.push_back(matrix[strow][i]);

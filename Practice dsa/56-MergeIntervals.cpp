@@ -6,7 +6,7 @@ public:
         ans.push_back(arr[0]);
         int n=arr.size();
         
-        for(int i=0;i<n;i++){
+        for(int i=1;i<n;i++){
             int last=ans.back()[1];
             int currSt=arr[i][0];
             int currEnd=arr[i][1];
