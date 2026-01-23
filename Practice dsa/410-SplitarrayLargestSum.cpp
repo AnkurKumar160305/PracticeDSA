@@ -15,7 +15,6 @@ class Solution {
     }
 public:
     int splitArray(vector<int>& nums, int k) {
-        unordered_map<int,int> m;
         int n=nums.size();
         int left=*max_element(nums.begin(),nums.end());
         int right=accumulate(nums.begin(),nums.end(),0);
