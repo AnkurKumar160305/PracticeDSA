@@ -46,7 +46,7 @@ int kthElement(vector<int>& a,vector<int>& b,int k){
         int n1=a.size();
         int n2=b.size();
         if(n1>n2){
-            return findMedianSortedArrays(b,a,k);
+            return kthElement(b,a,k);
         }
         int n=(n1+n2);
         int left=k;

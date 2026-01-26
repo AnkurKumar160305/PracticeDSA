@@ -3,18 +3,16 @@
 using namespace std;
 
 int maxLen(int &A[],int n){
-    unordered map<int,int> m;
+    unordered_map<int,int> m;
     int sum=0,maxi=0;
     for(int i=0;i<n;i++){
-        sum+=nums[i];
+        sum+=A[i];
         if(sum==0){
             maxi=max(maxi,i+1);
+        }else if(m.find(sum)!=m.end()){
+            maxi=max(maxi,i-m[sum]);
         }else{
-            if(m.find(sum)!=m.end()){
-                maxi=max(maxi,i-m[sum]);
-            }else{
-                m[sum]=i;
-            }
+            m[sum]=i;
         }
     }
     return maxi;

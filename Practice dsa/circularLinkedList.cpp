@@ -38,7 +38,6 @@ void insertNode(Node* &tail, int element, int d) {
         //assuming that the element is present in the list
 
         Node* curr = tail;
-
         while(curr->data != element) {
             curr = curr -> next;
         }
