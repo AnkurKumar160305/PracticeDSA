@@ -65,6 +65,7 @@ int rowWithMax1s(vector<vector<int>>& matrix, int n, int m) {
             col--;
         } else {
             row++;    
+            
         }
     }
     return maxRow;
