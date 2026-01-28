@@ -43,6 +43,7 @@ public:
                 ans += value(s[i]);
             }
         }
+
         return ans;
     }
 };
