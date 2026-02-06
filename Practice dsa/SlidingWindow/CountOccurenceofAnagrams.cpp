@@ -2,27 +2,32 @@
 class Solution {
   public:
     int search(string &pat, string &txt) {
-        int k = pat.size();
-        int n = txt.size();
-        if(k > n) return 0;
-        
-        vector<int> patFreq(26,0),txtFreq(26,0);
-        for(int i=0;i<pat.size();i++){
-            patFreq[pat[i]-'a']++;
-        }
-       
-        
+        // code here
+        int k=pat.size();
+        int n=txt.size();
         int cnt=0;
-        for(int i=0;i<n;i++){
-            txtFreq[txt[i]-'a']++;
-            if(i>=k){
-                txtFreq[txt[i-k]-'a']--;
+        if(k>n){
+            return 0;
+        }
+        vector<int> patFreq(26,0);
+        vector<int> txtFreq(26,0);
+        for(auto i:pat){
+            patFreq[i-'a']++;
+        }
+        int i=0,j=0;
+        while(j<n){
+            txtFreq[txt[j]-'a']++;
+            if(j-i+1>k){
+                txtFreq[txt[i]-'a']--;
+                i++;
             }
-            if(i>=k-1 && txtFreq==patFreq){
-                cnt++;
+            if(j-i+1==k){
+                if(patFreq==txtFreq){
+                    cnt++;
+                }
             }
+            j++;
         }
         return cnt;
-        
     }
 };
