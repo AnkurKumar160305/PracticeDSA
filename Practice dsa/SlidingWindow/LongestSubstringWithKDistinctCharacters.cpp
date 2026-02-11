@@ -36,7 +36,6 @@ class Solution {
                 cnt++;
             }
             freq[s[j]-'a']++;
-            
             while(cnt>k){
                 freq[s[i]-'a']--;
                 if(freq[s[i]-'a']==0){
