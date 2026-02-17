@@ -35,3 +35,45 @@ class Solution {
         return ls;
     }
 };
+
+
+
+
+//One more example of DFS
+void dfs(int node, vector<int> &vis, vector<int> &component, vector<vector<int>> &adj) {
+    
+    vis[node] = 1;
+    component.push_back(node);
+    
+    for (auto it : adj[node]) {
+        if (!vis[it]) {
+            dfs(it, vis, component, adj);
+        }
+    }
+}
+
+vector<vector<int>> depthFirstSearch(int V, int E, vector<vector<int>> &edges)
+{
+    vector<vector<int>> adj(V);
+    
+    for (int i = 0; i < E; i++) {
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    
+    vector<int> vis(V, 0);
+    vector<vector<int>> ans;
+    
+    for (int i = 0; i < V; i++) {
+        if (!vis[i]) {
+            vector<int> component;
+            dfs(i, vis, component, adj);
+            ans.push_back(component);
+        }
+    }
+    
+    return ans;
+}
