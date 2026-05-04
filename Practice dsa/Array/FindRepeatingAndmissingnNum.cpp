@@ -35,8 +35,7 @@ vector<int> findMissingRepeatingNumbers(vector<int>& nums){
         xr^=nums[i];
         xr^=(i+1);
     }
-
-
+    
     int bitNo=0;
     while(1){
         if((xr & (1<<bitNo))!=0){
@@ -46,7 +45,6 @@ vector<int> findMissingRepeatingNumbers(vector<int>& nums){
     }
     //OR
     // int number=xr & ~(xr-1); //rightmost set bit
-
     
     long long zero=0,one=0;
     for(int i=0;i<n;i++){

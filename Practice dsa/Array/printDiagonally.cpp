@@ -1,5 +1,4 @@
 class Solution {
-
   public:
     vector<int> downwardDiagonal(int N, vector<vector<int>> A) {
         // Your code goes here

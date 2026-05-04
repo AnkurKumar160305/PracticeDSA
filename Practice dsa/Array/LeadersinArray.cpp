@@ -33,6 +33,21 @@ void LeadersinArray(vector<int> &arr,int n){
     cout<<temp<<" ";
 }
 
+#include <bits/stdc++.h> 
+vector<int> findLeaders(vector<int> &elements, int n) {
+    // Write your code here.
+    vector<int> ans;
+    int maxi=elements[n-1];
+    ans.push_back(maxi);
+    for(int i=n-2;i>=0;i--){
+        if(elements[i]>maxi){
+            maxi=elements[i];
+            ans.push_back(maxi);
+        }
+    }
+    reverse(ans.begin(), ans.end()); 
+    return ans;
+}
 
 int main(){
     vector<int> arr={2,7,3,1,5,4,9,6,8};
