@@ -38,7 +38,7 @@ void levelOrderTraversal(node* root){
     q.push(root);
     q.push(NULL);
 
-
+    
     while(!q.empty()){
         node* temp=q.front();
         q.pop();

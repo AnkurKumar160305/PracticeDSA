@@ -1,8 +1,8 @@
 class Solution {
-    bool isValid(vector<int>& nums,int day,int threshold){
-        int sum=0;
-        for(int d:nums){
-            sum+=ceil((double)d/day);
+    bool check(vector<int>& nums,int mid, int threshold){
+        long long sum=0;
+        for(int i=0;i<nums.size();i++){
+            sum+=(nums[i]+mid-1)/mid;
             if(sum>threshold){
                 return false;
             }
@@ -11,26 +11,18 @@ class Solution {
     }
 public:
     int smallestDivisor(vector<int>& nums, int threshold) {
-        int n=nums.size();
-        int left=1;
-        int right=INT_MIN;
-        for(int i=0;i<n;i++){
-            if(nums[i]>right){
-                right=nums[i];
-            }
-        }
-        int ans=right;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-
-            if(isValid(nums,mid,threshold)){
+        int low=1;
+        int high=*max_element(nums.begin(),nums.end());
+        int ans=1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(check(nums,mid,threshold)){
                 ans=mid;
-                right=mid-1;
+                high=mid-1;
             }else{
-                left=mid+1;
+                low=mid+1;
             }
         }
-
         return ans;
     }
 };
