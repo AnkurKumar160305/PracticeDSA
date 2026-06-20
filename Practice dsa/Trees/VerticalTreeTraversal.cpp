@@ -12,7 +12,7 @@ class Node {
     }
 };
 */
-
+//Number line
 class Solution {
   public:
     vector<vector<int>> verticalOrder(Node *root) {
