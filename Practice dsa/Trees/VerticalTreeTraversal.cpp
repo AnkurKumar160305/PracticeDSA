@@ -17,8 +17,9 @@ class Solution {
   public:
     vector<vector<int>> verticalOrder(Node *root) {
         // code here
-        //map(horizontal_distance,level,Nodes)
+        //map(horizontal_distance,{level,Nodes})
         map<int,map<int,vector<int>>> nodes;
+        //queue(Node,{horizontal_distance,level})
         queue<pair<Node*,pair<int,int>>> q;
         vector<vector<int>> ans;
         

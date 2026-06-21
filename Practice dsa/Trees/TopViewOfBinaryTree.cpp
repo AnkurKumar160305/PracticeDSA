@@ -21,7 +21,9 @@ class Solution {
         if(root==NULL){
             return ans;
         }
+        //map(horizontal_distance,Node)
         map<int,int> topNode;
+        //queue(Node,{horizontal_distance})
         queue<pair<Node*,int>> q;
         
         q.push({root,0});
