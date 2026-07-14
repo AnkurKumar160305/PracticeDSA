@@ -3,6 +3,9 @@
 //Time complexity of DSU is O(4*alpha(n)) where alpha(n) is the inverse Ackermann function which grows very slowly and is considered constant for all practical purposes. So, the time complexity of DSU operations can be considered as O(1) on average.
 ///There are two methods to find the parent of a node in DSU: Path Compression and Union by Size/Rank. Path Compression is a technique that flattens the structure of the tree whenever Find is called, making future queries faster. Union by Size/Rank is a technique that always attaches the smaller tree under the root of the larger tree, keeping the overall tree height small.
 
+#include<bits/stdc++.h>
+using namespace std;
+
 class DisJointSet{
     public:
 
@@ -29,16 +32,27 @@ class DisJointSet{
         int pu=findParent(u);
         int pv=findParent(v);
 
-        if(pu==pv){
-            return;
-        }
-
         if(size[pu]>size[pv]){
-            parent[pv]=pu;
+            parent[pv]=parent[pu];
             size[pu]+=size[pv];
         }else{
-            parent[pu]=pv;
+            parent[pu]=parent[pv];
             size[pv]+=size[pu];
         }
     }
 };
+
+int main(){
+    DisJointSet ds(6);
+    ds.Union(1,2);
+    ds.Union(2,3);
+    ds.Union(3,4);
+    ds.Union(5,6);
+
+    if(ds.findParent(3)==ds.findParent(4)){
+        cout<<"Same component"<<endl;
+    }else{
+        cout<<"Different component"<<endl;
+    }
+
+}
