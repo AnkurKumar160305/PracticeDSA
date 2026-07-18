@@ -50,3 +50,43 @@ class Solution {
         
     }
 };
+
+
+#include <bits/stdc++.h>
+
+void topo(int node,vector<bool>& vis,stack<int>& s,vector<vector<int>>& adj){
+    vis[node]=1;
+
+    for(auto i:adj[node]){
+        if(!vis[i]){
+            topo(i,vis,s,adj);
+        }
+    }
+    s.push(node);
+}
+vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
+    // Write your code here
+    vector<vector<int>> adj(v);
+    for(int i=0;i<e;i++){
+        int u=edges[i][0];
+        int v=edges[i][1];
+        adj[u].push_back(v);
+    }
+    vector<bool> vis(v, false);
+    stack<int> s;
+
+    for(int i=0;i<v;i++){
+        if(!vis[i]){
+            topo(i,vis,s,adj);
+        }
+    }
+
+    vector<int> ans;
+    while(!s.empty()){
+        ans.push_back(s.top());
+        s.pop();
+    }
+
+    return ans;
+
+}
