@@ -42,3 +42,55 @@ class Solution {
         
     }
 };
+
+
+//OR
+#include <bits/stdc++.h> 
+vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int source) {
+    // Write your code here.
+    unordered_map<int,vector<pair<int,int>>> adj;
+
+    for(int i=0;i<edges;i++){
+        int u=vec[i][0];
+        int v=vec[i][1];
+        int w=vec[i][2];
+
+        adj[u].push_back({v,w});
+        adj[v].push_back({u,w});
+    }
+
+    vector<int> dist(vertices,INT_MAX);
+
+    set<pair<int,int>> s;
+    //{dist,node}
+
+    dist[source]=0;
+
+    s.insert({0,source});
+
+    while(!s.empty()){
+        auto top=*(s.begin());
+
+        int nodeDistance=top.first;
+        int topNode=top.second;
+
+        s.erase(s.begin());
+
+        for(auto i:adj[topNode]){
+            if(nodeDistance+i.second<dist[i.first]){
+                auto record=s.find({dist[i.first],i.first});
+                //if record exist remove it
+                if(record!=s.end()){
+                    s.erase(record);
+                }
+
+                //update distance
+                dist[i.first]=nodeDistance+i.second;
+
+                s.insert({dist[i.first],i.first});
+            }
+        }
+    }
+
+    return dist;
+}
