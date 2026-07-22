@@ -1,57 +1,70 @@
-#include <bits/stdc++.h> 
-vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, 
-vector<pair<pair<int, int>, int>> &g)
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<pair<pair<int, int>, int>> calculatePrimsMST(
+    int n, int m,
+    vector<pair<pair<int, int>, int>> &g)
 {
-    // Write your code here.
-    unordered_map<int,vector<pair<int,int>>> adj;
+    // Step 1: Create adjacency list
+    vector<vector<pair<int, int>>> adj(n + 1);
 
-    for(int i=0;i<g.size();i++){
-        int u=g[i].first.first;
-        int v=g[i].first.second;
-        int w=g[i].second;
-        adj[u].push_back({v,w});
-        adj[v].push_back({u,w});
+    for (auto &edge : g)
+    {
+        int u = edge.first.first;
+        int v = edge.first.second;
+        int wt = edge.second;
+
+        adj[u].push_back({v, wt});
+        adj[v].push_back({u, wt});
     }
 
-    vector<int> key(n+1);
-    vector<bool> mst(n+1);
-    vector<int> parent(n+1);
+    // Step 2: Data Structures
+    vector<int> key(n + 1, INT_MAX);
+    vector<int> parent(n + 1, -1);
+    vector<bool> visited(n + 1, false);
 
-    for(int i=0;i<=n;i++){
-        key[i]=INT_MAX;
-        mst[i]=false;
-        parent[i]=-1;
-    }
+    // Min Heap -> {weight, node}
+    priority_queue<
+        pair<int, int>,
+        vector<pair<int, int>>,
+        greater<pair<int, int>>
+    > pq;
 
-    key[1]=0;
-    parent[1]=-1;
+    // Start from node 1
+    key[1] = 0;
+    pq.push({0, 1});
 
-    for(int i=1;i<n;i++){
-        int mini=INT_MAX;
-        int u;
-        for(int v=1;v<=n;v++){
-            if(mst[v]==false && key[v]<mini){
-                u=v;
-                mini=key[v];
+    while (!pq.empty())
+    {
+        int node = pq.top().second;
+        pq.pop();
+
+        if (visited[node])
+            continue;
+
+        visited[node] = true;
+
+        for (auto &it : adj[node])
+        {
+            int neighbour = it.first;
+            int weight = it.second;
+
+            if (!visited[neighbour] && weight < key[neighbour])
+            {
+                key[neighbour] = weight;
+                parent[neighbour] = node;
+                pq.push({weight, neighbour});
             }
         }
-
-        //mark minimum node true
-        mst[u]=true;
-
-        for(auto it:adj[u]){
-            int v=it.first;
-            int w=it.second;
-            if(mst[v]==false && w<key[v]){
-                parent[v]=u;
-                key[v]=w;
-            }
-        }
     }
 
-    vector<pair<pair<int, int>, int>> result;
-    for(int i=2;i<=n;i++){
-        result.push_back({{parent[i],i},key[i]});
+    // Step 3: Store MST edges
+    vector<pair<pair<int, int>, int>> ans;
+
+    for (int i = 2; i <= n; i++)
+    {
+        ans.push_back({{parent[i], i}, key[i]});
     }
-    return result;
+
+    return ans;
 }
