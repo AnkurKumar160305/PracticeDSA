@@ -62,7 +62,7 @@ class Solution {
 
 
 
-//Unbounded Knapsack Problem means using same item multiple times. So, we can use the same item again and again. So, we wil not decrease the index in case of taking the item.
+//Unbounded Knapsack Problem means using same item multiple times. So, we can use the same item again and again. So, we wil not decrease the index in case of taking the item...
 class Solution {
     vector<vector<int>> dp;
     int solve(int index,vector<int>& val, vector<int>& wt, int W){
