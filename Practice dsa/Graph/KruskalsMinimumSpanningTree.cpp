@@ -61,7 +61,7 @@ class Solution {
 };
 
 
-
+//Kruskal' MST
 //By rank method
 #include<bits/stdc++.h>
 
