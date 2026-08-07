@@ -26,6 +26,7 @@ vector<vector<int>>& result,unordered_map<int,vector<int>>& adj,unordered_map<in
                 result.push_back(ans);
             }
         }else{
+            //node is already visited and not a parent
             //Back edge
             low[node]=min(low[node],disc[nbr]);
         }
