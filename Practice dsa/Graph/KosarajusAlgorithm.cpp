@@ -1,4 +1,7 @@
+//Kosaraju's Algorithm to find number of strongly connected components in a directed graph
+
 #include<bits/stdc++.h>
+
 
 void topo(int node,vector<bool>& vis,stack<int>& s,
 vector<vector<int>>& adj){
