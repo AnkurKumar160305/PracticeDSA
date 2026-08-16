@@ -98,6 +98,74 @@ int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight)
 	return dp[n-1][W];
 }
 
+//Space Optimization
+#include <bits/stdc++.h> 
+
+
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+	// Write your code here
+	int W=maxWeight;
+	vector<int> prev(W+1,0);
+	vector<int> curr(W+1,0);
+	
+	// dp[index][w] = maximum value we can get using items from 0 to index with capacity w
+	// Base case: only item 0 is available
+	// we treated item = 0 seperately because, there is no previous item to use in the recurrence.
+	for(int w=weight[0];w<=W;w++){
+		prev[w]=value[0];
+	}
+
+	for(int index=1;index<n;index++){
+		for(int w=0;w<=W;w++){
+			int include=0;
+			if(weight[index]<=w){
+				include=value[index]+prev[w-weight[index]];
+			}
+			int exclude=prev[w];
+
+			curr[w]=max(include,exclude);
+		}
+		prev=curr;
+	}
+
+
+	return prev[W];
+}
+
+
+//Space Optimization with 1D array
+#include <bits/stdc++.h> 
+
+
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+	// Write your code here
+	int W=maxWeight;
+	vector<int> curr(W+1,0);
+	
+	// Base case: only item 0 is available
+	// we treated item = 0 seperately because, there is no previous item to use in the recurrence.
+	for(int w=weight[0];w<=W;w++){
+		curr[w]=value[0];
+	}
+
+	for(int index=1;index<n;index++){
+		for(int w=W;w>=0;w--){
+			int include=0;
+			if(weight[index]<=w){
+				include=value[index]+curr[w-weight[index]];
+			}
+			int exclude=curr[w];
+
+			curr[w]=max(include,exclude);
+		}
+	}
+
+
+	return curr[W];
+}
+
 
 //Unbounded Knapsack Problem means using same item multiple times. So, we can use the same item again and again. So, we wil not decrease the index in case of taking the item...
 class Solution {
