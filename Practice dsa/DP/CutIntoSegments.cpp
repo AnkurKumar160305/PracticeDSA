@@ -86,3 +86,5 @@ int cutSegments(int n, int x, int y, int z) {
 	// Write your code here.
 	return solve(n,x,y,z);
 }
+
+

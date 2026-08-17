@@ -1,3 +1,4 @@
+//Same element can be chosen multiple times.
 class Solution {
     void solve(vector<vector<int>>& ans,vector<int> output,int index,vector<int> candidates,int target){
         if(target==0){
