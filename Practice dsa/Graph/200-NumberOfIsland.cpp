@@ -1,5 +1,6 @@
 //Using BFS
 //For 4 direction
+//Number of island
 class Solution {
     void bfs(int row,int col,vector<vector<int>>& vis,vector<vector<char>>& grid){
         vis[row][col]=1;
