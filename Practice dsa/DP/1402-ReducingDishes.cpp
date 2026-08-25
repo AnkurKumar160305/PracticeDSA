@@ -1,3 +1,5 @@
+// 1402. Reducing Dishes
+
 //using recursion
 class Solution {
     int solve(int index,int time,vector<int>& s,int n){
