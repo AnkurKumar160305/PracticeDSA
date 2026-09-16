@@ -11,6 +11,8 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+ 
 class Solution {
     bool check(TreeNode* root,long minVal,long maxVal){
         if(root==NULL){
