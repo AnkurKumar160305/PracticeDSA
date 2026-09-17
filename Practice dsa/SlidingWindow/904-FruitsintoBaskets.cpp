@@ -1,3 +1,7 @@
+//Fruits into Baskets
+
+
+#include<iostream>
 class Solution {
 public:
     int totalFruit(vector<int>& fruits) {
