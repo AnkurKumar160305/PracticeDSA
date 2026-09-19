@@ -1,3 +1,5 @@
+//Most Stones Removed with Same row or Column
+
 class Solution {
 public:
     int dfs(vector<vector<int>>&stones,int index,vector<bool>&visited,int&n){
