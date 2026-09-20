@@ -1,3 +1,5 @@
+
+//Minimum Cost to Connect All Points
 class DSU{
         public:
         vector<int> parent,size;
