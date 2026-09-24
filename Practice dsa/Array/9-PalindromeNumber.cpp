@@ -1,3 +1,4 @@
+//Palindrome number
 class Solution {
 public:
     bool isPalindrome(int x) {
