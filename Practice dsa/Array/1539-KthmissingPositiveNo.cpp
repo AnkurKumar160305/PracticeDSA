@@ -1,3 +1,4 @@
+//Kth Missing Positive No.
 class Solution {
     int missing(vector<int>& arr,int mid){
         return arr[mid]-(mid+1);
