@@ -1,3 +1,4 @@
+//maximum product of subarray
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
