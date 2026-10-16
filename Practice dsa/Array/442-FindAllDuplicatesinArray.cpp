@@ -1,3 +1,4 @@
+//Find all duplicates in array
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
