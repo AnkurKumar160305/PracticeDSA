@@ -1,3 +1,4 @@
+//Left view of binary tree
 class Solution {
   public:
     vector<int> leftView(Node *root) {
