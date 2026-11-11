@@ -1,3 +1,5 @@
+//Check Sum in Binary Tree
+
 bool isSumProperty(Node *root) {
         // code here
         if(root == NULL) return true;
