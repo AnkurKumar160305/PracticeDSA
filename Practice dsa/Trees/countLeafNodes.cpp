@@ -18,6 +18,7 @@
     
 ***********************************************************/
 
+//Count Leaf Nodes
 void inorder(BinaryTreeNode<int> *root,int &cnt){
     if(root==NULL){
         return;
